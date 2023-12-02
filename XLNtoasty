@@ -1,0 +1,49 @@
+Model: "tfxl_net_for_sequence_classification" (ALL DATA, 0.75 split)
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+transformer (TFXLNetMainLaye multiple                  116718336 
+_________________________________________________________________
+sequence_summary (TFSequence multiple                  590592    
+_________________________________________________________________
+logits_proj (Dense)          multiple                  1538      
+=================================================================
+Total params: 117,310,466
+Trainable params: 117,310,466
+Non-trainable params: 0
+_________________________________________________________________
+tokenizer = AutoTokenizer.from_pretrained("toastynews/xlnet-hongkongese-base")
+model = TFXLNetForSequenceClassification.from_pretrained('toastynews/xlnet-hongkongese-base')
+
+learning_rate = 2e-5
+optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate, epsilon=1e-08)
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+history = model.fit(train, validation_data = test, epochs=15)
+_________________________________________________________________
+
+Epoch 1/15
+368/368 [==============================] - 3497s 9s/step - loss: 6.6999 - accuracy: 0.5275 - val_loss: 6.7509 - val_accuracy: 0.5573
+Epoch 2/15
+368/368 [==============================] - 3485s 9s/step - loss: 6.8704 - accuracy: 0.5137 - val_loss: 6.6219 - val_accuracy: 0.5658
+Epoch 3/15
+368/368 [==============================] - 3349s 9s/step - loss: 6.7967 - accuracy: 0.5194 - val_loss: 6.7900 - val_accuracy: 0.5547
+Epoch 4/15
+368/368 [==============================] - 3477s 9s/step - loss: 6.7567 - accuracy: 0.5258 - val_loss: 6.8760 - val_accuracy: 0.5491
+Epoch 5/15
+368/368 [==============================] - 3369s 9s/step - loss: 6.8734 - accuracy: 0.5143 - val_loss: 6.7900 - val_accuracy: 0.5547
+Epoch 6/15
+368/368 [==============================] - 3569s 10s/step - loss: 6.6383 - accuracy: 0.5197 - val_loss: 6.6649 - val_accuracy: 0.5629
+Epoch 7/15
+368/368 [==============================] - 3448s 9s/step - loss: 6.8655 - accuracy: 0.5024 - val_loss: 6.6610 - val_accuracy: 0.5632
+Epoch 8/15
+368/368 [==============================] - 3434s 9s/step - loss: 6.6910 - accuracy: 0.5212 - val_loss: 6.6806 - val_accuracy: 0.5619
+Epoch 9/15
+368/368 [==============================] - 3443s 9s/step - loss: 6.7717 - accuracy: 0.5267 - val_loss: 6.8643 - val_accuracy: 0.5499
+Epoch 10/15
+368/368 [==============================] - 3287s 9s/step - loss: 6.7674 - accuracy: 0.5121 - val_loss: 6.5438 - val_accuracy: 0.5709
+Epoch 11/15
+368/368 [==============================] - 3282s 9s/step - loss: 6.7335 - accuracy: 0.5058 - val_loss: 6.9073 - val_accuracy: 0.5470
+Epoch 12/15
+368/368 [==============================] - 3619s 10s/step - loss: 6.8684 - accuracy: 0.5179 - val_loss: 6.9620 - val_accuracy: 0.5435
+Epoch 13/15
+225/368 [=================>............] - ETA: 20:09 - loss: 6.7260 - accuracy: 0.5213
